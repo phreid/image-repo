@@ -1,0 +1,20 @@
+<% layout('./layouts/boilerplate') %>
+    <h1><%= image.title %> </h1>
+    <h2 class="text-secondary"><%= image.author.username %> </h2>
+    <img src="<%= image.src %>" alt="<%= image.title %>">
+    <div>
+        <p>Description: <%= image.description %> </p>
+    </div>
+    <div>
+        <p>Price: <%= image.price %> </p>
+        <p>Quantity Available: <%= image.quantity %> </p>
+    </div>
+    <div class="mt-2">
+        <% if (image.quantity > 0) { %>
+            <form action=<%= `/images/${image._id}/buy?_method=PATCH` %> method="POST">
+                <button class="btn btn-success" type="submit" name="quantity" value=<%= image.quantity - 1 %> >Buy</button>
+            </form>
+        <% } else { %>
+            <button class="btn btn-success" disabled>Out of Stock</button>
+        <% } %>
+    </div>

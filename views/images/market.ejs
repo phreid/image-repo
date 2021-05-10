@@ -1,0 +1,27 @@
+<% layout('./layouts/boilerplate') %>
+<h1>All Images</h1>
+<div class="row">
+<% for (let image of images) { %>
+    <div class="col-md-4">
+        <div class="card mb-3 shadow-sm">
+            <img src="<%= image.src %> " alt="<%= image.title %>" class="img-fluid">
+            <div class="card-body">
+                <h5 class="card-title"><%= image.title %></h5>
+                <p class="card-text"><%= image.author.username %> </p>
+                <p class="card-text">$<%= image.price %></p>
+                <p class="card-text"><%= image.quantity %> in stock </p>
+                <a href=<%= `./images/${image._id}` %> class="btn btn-primary">View</a>
+                <div class="mt-2">
+                    <% if (image.quantity > 0) { %>
+                        <form action=<%= `./images/${image._id}/buy?_method=PATCH` %> method="POST">
+                            <button class="btn btn-success" type="submit" name="quantity" value=<%= image.quantity - 1 %> >Buy</button>
+                        </form>
+                    <% } else { %>
+                        <button class="btn btn-success" disabled>Out of Stock</button>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </div>
+<% } %> 
+</div>

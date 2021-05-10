@@ -1,0 +1,18 @@
+<% layout('./layouts/boilerplate') %>
+<h1>My Images</h1>
+<div class="row">
+    <% for (let image of images) { %>
+        <div class="col-md-4">
+            <div class="card mb-3 shadow-sm">
+                <img src="<%= image.src %> " alt="<%= image.title %>" class="img-fluid">
+                <div class="card-body">
+                    <h5 class="card-title"><%= image.title %></h5>
+                    <p class="card-text"><%= image.author.username %> </p>
+                    <p class="card-text">$<%= image.price %></p>
+                    <p class="card-text"><%= image.quantity %> in stock </p>
+                    <a href=<%= `/images/${image._id}/edit` %> class="btn btn-primary">Edit</a>
+                </div>
+            </div>
+        </div>
+    <% } %> 
+</div>
