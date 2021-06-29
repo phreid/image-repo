@@ -112,7 +112,13 @@ app.put('/images/:id', async (req, res) => {
         ... req.body.image, 
         author: req.session.userId
     });
-    res.redirect(`/images/myimages`);
+    res.redirect('/images/myimages');
+});
+
+app.delete('/images/:id', async (req, res) => {
+    const {id} = req.params;
+    await Image.findByIdAndDelete(id);
+    res.redirect('/images/myimages');
 });
 
 app.get('/register', (req, res) => {

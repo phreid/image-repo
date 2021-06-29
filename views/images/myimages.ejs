@@ -8,9 +8,18 @@
                 <div class="card-body">
                     <h5 class="card-title"><%= image.title %></h5>
                     <p class="card-text"><%= image.author.username %> </p>
-                    <p class="card-text">$<%= image.price %></p>
-                    <p class="card-text"><%= image.quantity %> in stock </p>
-                    <a href=<%= `/images/${image._id}/edit` %> class="btn btn-primary">Edit</a>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">$<%= image.price %></li>
+                    <li class="list-group-item"><%= image.quantity %> in stock </li>
+                </ul>
+                <div class="card-body">
+                    <div class="btn-toolbar">
+                        <a href=<%= `/images/${image._id}/edit` %> class="btn btn-primary me-1">Edit</a>
+                        <form action=<%= `/images/${image._id}?_method=DELETE` %> method="POST">
+                            <button class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
